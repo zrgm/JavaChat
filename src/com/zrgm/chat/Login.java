@@ -12,6 +12,8 @@ import javax.swing.UIManager;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Login extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -22,7 +24,7 @@ public class Login extends JFrame {
 	private JLabel lblIpAddress;
 	private JLabel lblPort;
 	private JTextField txtPort;
-
+	
 	
 	public Login() {
 		
@@ -73,10 +75,24 @@ public class Login extends JFrame {
 		txtPort.setBounds(62, 219, 170, 31);
 		contentPane.add(txtPort);
 		
-		JButton btnNewButton = new JButton("Login");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnNewButton.setBounds(102, 299, 89, 23);
-		contentPane.add(btnNewButton);
+		JButton loginBtn= new JButton("Login");
+		loginBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String name = txtName.getText();
+				String address = txtAddr.getText();
+				int port = Integer.parseInt(txtPort.getText());
+				
+				login(name, address, port);
+			}
+		});
+		loginBtn.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		loginBtn.setBounds(102, 299, 89, 23);
+		contentPane.add(loginBtn);
+	}
+	
+	private void login(String name, String address, int port) {
+		dispose();
+		System.out.println(name + ", " + address + ", " + port);
 	}
 	
 	public static void main(String[] args) {
